@@ -140,9 +140,13 @@ def load_browser(url=None):
     browser = sh.Command('uzbl-browser')(print_events=True, config='-', uri=current_browser_url, _bg=True)
     logging.info('Browser loading %s. Running as PID %s.', current_browser_url, browser.pid)
 
-    uzbl_rc = 'set ssl_verify = {}\n'.format('1' if settings['verify_ssl'] else '0')
     with open(HOME + UZBLRC) as f:  # load uzbl.rc
-        uzbl_rc = f.read() + uzbl_rc
+        uzbl_rc = f.read()
+        uzbl_rc += 'set ssl_verify = {}\n'.format('1' if settings['verify_ssl'] else '0')
+
+        if settings['proxy']:
+            uzbl_rc += 'set proxy_url = %s\n' % settings['proxy']
+
     browser_send(uzbl_rc)
 
 
