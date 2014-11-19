@@ -2,7 +2,7 @@
 # -*- coding: utf8 -*-
 
 __author__ = "Viktor Petersson"
-__copyright__ = "Copyright 2012, WireLoad Inc"
+__copyright__ = "Copyright 2012-2014, WireLoad Inc"
 __license__ = "Dual License: GPLv2 and Commercial License"
 __version__ = "0.1.4"
 __email__ = "vpetersson@wireload.net"
