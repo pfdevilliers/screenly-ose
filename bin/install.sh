@@ -47,7 +47,7 @@ if [ ! -f /etc/locale.gen ]; then
 fi
 
 sudo apt-get update
-sudo apt-get install -y python-dev git-core
+sudo apt-get install -y python-dev git-core libffi-dev libssl-dev
 curl -s https://bootstrap.pypa.io/get-pip.py | sudo python
 sudo pip install ansible==2.0.2.0
 

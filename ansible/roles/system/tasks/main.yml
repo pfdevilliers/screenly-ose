@@ -63,11 +63,8 @@
     name: "{{ item }}"
     state: latest
   with_items:
-    - libffi-dev
-    - libssl-dev
     - matchbox
     - omxplayer
-    - python-dev
     - python-netifaces
     - python-simplejson
     - sqlite3
