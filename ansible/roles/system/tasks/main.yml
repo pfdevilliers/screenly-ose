@@ -19,36 +19,39 @@
     msg: "Detected BerryBoot installation. Skipping some steps."
   when: is_berryboot
 
+- name: Mount boot on BerryBoot
+  mount:
+    name=/boot
+    src=/dev/mmcblk0p1
+    fstype=vfat
+    state=mounted
+  when: is_berryboot
+
 - name: Make sure we have proper framebuffer depth
   lineinfile:
     dest: /boot/config.txt
     regexp: ^framebuffer_depth=
     line: framebuffer_depth=32
-  when: not is_berryboot
 
 - name: Fix framebuffer bug
   lineinfile:
     dest: /boot/config.txt
     regexp: ^framebuffer_ignore_alpha=
     line: framebuffer_ignore_alpha=1
-  when: not is_berryboot
 
 - name: Backup kernel boot args
   copy:
     src: /boot/cmdline.txt
     dest: /boot/cmdline.txt.orig
     force: no
-  when: not is_berryboot
 
 - debug:
     msg: "Use cmdline.txt.orig for boot parameters (don't remove this file)"
-  when: not is_berryboot
 
 - copy:
     src: /boot/cmdline.txt.orig
     dest: /boot/cmdline.txt
     force: yes
-  when: not is_berryboot
 
 - name: Use Systemd as init and quiet boot process
   lineinfile:
@@ -56,7 +59,6 @@
     regexp: (.*)
     backrefs: yes
     line: \1 quiet init=/lib/systemd/systemd
-  when: not is_berryboot
 
 - name: Install Screenly dependencies
   apt:
