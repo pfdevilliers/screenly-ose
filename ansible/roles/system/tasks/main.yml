@@ -16,7 +16,7 @@
 - set_fact: is_berryboot="{{berryboot.stat.exists}}"
 
 - debug:
-    msg: "Detected BerryBoot installation. Skipping some steps."
+    msg: "Detected BerryBoot installation."
   when: is_berryboot
 
 - name: Mount boot on BerryBoot
