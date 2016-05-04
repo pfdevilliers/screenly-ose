@@ -44,7 +44,7 @@
     force: no
 
 - name: Run database migration
-  user: pi
+  become: no
   command: python /home/pi/screenly/bin/migrate.py
   register: migrate
 
