@@ -46,6 +46,7 @@ if [ ! -f /etc/locale.gen ]; then
   sudo locale-gen
 fi
 
+sudo sed -i 's/apt.screenlyapp.com/archive.raspbian.org/g' /etc/apt/sources.list
 sudo apt-get update
 sudo apt-get install -y python-dev git-core libffi-dev libssl-dev
 curl -s https://bootstrap.pypa.io/get-pip.py | sudo python
